@@ -17,9 +17,9 @@ class CakeSerializator(serializers.ModelSerializer):
         ]
 
 
-class BuyerSerializator(serializers.ModelSerializer):
+class UserSerializator(serializers.ModelSerializer):
     class Meta:
-        model = models.Сake_buyer
+        model = models.User
         fields = [
             'cake', 'buyer_name', 'buyer_mail',
             'buyer_phone', 'buyer_date', 'buyer_discount',
@@ -34,12 +34,13 @@ class GetCake(APIView):
 
         return Response(serialized_cake.data)
 
-class GetBuyer(APIView):
+
+class GetUser(APIView):
     def get(self, request, pk, format=None):
-        buyer = models.Сake_buyer.objects.get(pk=pk)
-        if not buyer:
+        user = models.User.objects.get(pk=pk)
+        if not user:
             return HttpResponseNotFound
         
-        serialized_buyer = BuyerSerializator(buyer)
+        serialized_user = UserSerializator(user)
 
-        return Response(serialized_buyer.data)
+        return Response(serialized_user.data)

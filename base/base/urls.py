@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from base_bot import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cake/', views.GetCake.as_view())
 ]

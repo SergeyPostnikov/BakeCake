@@ -20,5 +20,6 @@ from base_bot import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cake/', views.GetCake.as_view())
+    path('cake/', views.GetCake.as_view()),
+    path('buyer/<int:pk>', views.GetBuyer.as_view())
 ]

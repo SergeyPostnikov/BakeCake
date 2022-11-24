@@ -6,4 +6,3 @@ class BotAdmin(admin.ModelAdmin):
     list_display = ['pk']
 
 admin.site.register(models.Cake, BotAdmin)
-admin.site.register(models.User, BotAdmin)

@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.timezone import localtime
 
 
 class Cake(models.Model):
@@ -38,7 +37,8 @@ class Cake(models.Model):
     ]
 
     cake_level = models.CharField(
-            verbose_name='level', max_length=1, choices=NUMBER_LEVELS, default='1'
+            verbose_name='level', max_length=1, choices=NUMBER_LEVELS,
+            default='1'
     )
 
     cake_form = models.CharField(
@@ -65,19 +65,14 @@ class Cake(models.Model):
             verbose_name='comment', max_length=255, blank = True
     )
 
+    delivery_address = models.CharField(
+            verbose_name='address', max_length=255 ,blank = True
+    )
+
+    delivery_date = models.DateTimeField(
+        verbose_name="date", null=True, blank = True
+    )
+
 
     def __str__(self):
         return f'Cake {self.pk} '
-
-
-class User(models.Model):
-    cake = models.ForeignKey(Cake, on_delete=models.CASCADE)
-    buyer_name = models.CharField('full name', max_length=100)
-    buyer_mail = models.EmailField('mail', max_length=50)
-    buyer_phone = models.CharField('phone number', max_length=25)
-    buyer_date = models.DateField('order time', null=True)
-    buyer_discount = models.CharField('promo code', max_length=10, blank = True)
-
-    
-    def __str__(self):
-        return f'User {self.pk} '

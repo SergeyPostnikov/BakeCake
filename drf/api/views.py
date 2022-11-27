@@ -11,7 +11,7 @@ class CakeSerializator(serializers.HyperlinkedModelSerializer):
         fields = [
             'pk', 'cake_level', 'cake_form',
             'cake_topping', 'cake_berries', 'cake_dekor',
-            'cake_inscription', 'cake_comment'
+            'cake_inscription'
         ]
 
 

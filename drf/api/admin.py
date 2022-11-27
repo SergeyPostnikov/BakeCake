@@ -8,3 +8,5 @@ class CakeAdmin(admin.ModelAdmin):
         ]
 
 admin.site.register(models.Cake, CakeAdmin)
+admin.site.register(models.User, CakeAdmin)
+admin.site.register(models.Order, CakeAdmin)

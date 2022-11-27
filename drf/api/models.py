@@ -63,9 +63,55 @@ class Cake(models.Model):
             verbose_name='inscription', max_length=100, blank = True
     )
 
-    cake_comment = models.CharField(
-            verbose_name='comment', max_length=255, blank = True
+    def __str__(self):
+        return f'Cake {self.pk}'
+
+
+class User(models.Model):
+    cake = models.ForeignKey(Cake, on_delete=models.CASCADE)
+
+    name = models.CharField(
+        'name',
+        blank=True,
+        null=True,
+        max_length=50
+    )
+    phone = models.CharField(
+        'phone',
+        blank=True,
+        null=True,
+        max_length=50
+    )
+    email = models.EmailField(
+        'mail',
+        blank=True,
+        max_length=100,
+        null=True,
+        db_index=True,
+    )
+    address = models.TextField(
+        'address',
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
-        return f'Cake {self.pk}'
+        return f'{self.name}'
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField('Date delivery')
+    time = models.TimeField('Time delivery')
+    delivcomments = models.TextField(
+        'comment',
+        blank=True
+    )
+    cost = models.IntegerField(
+        'price',
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return f'Order {self.id}'

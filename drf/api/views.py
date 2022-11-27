@@ -24,8 +24,8 @@ class UserSerializator(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.User
         fields = [
-            'cake', 'name', 'phone',
-            'email', 'address'
+            'name', 'phone', 'email',
+            'address', 'orders'
         ]
 
 
@@ -38,7 +38,7 @@ class OrderSerializator(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Order
         fields = [
-            'user', 'date', 'time',
+            'cake', 'date', 'time',
             'delivcomments', 'cost'
         ]
 

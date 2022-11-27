@@ -68,31 +68,21 @@ class Cake(models.Model):
 
 
 class User(models.Model):
-    cake = models.ForeignKey(Cake, on_delete=models.CASCADE)
-
     name = models.CharField(
-        'name',
-        blank=True,
-        null=True,
-        max_length=50
+        verbose_name='name', blank=True, null=True, max_length=50
     )
     phone = models.CharField(
-        'phone',
-        blank=True,
-        null=True,
-        max_length=50
+        'phone', blank=True, null=True, max_length=50
     )
     email = models.EmailField(
-        'mail',
-        blank=True,
-        max_length=100,
-        null=True,
-        db_index=True,
+        verbose_name='mail', blank=True, max_length=100,
+        null=True, db_index=True,
     )
     address = models.TextField(
-        'address',
-        blank=True,
-        null=True,
+        verbose_name='address', blank=True, null=True,
+    )
+    orders = models.CharField(
+        verbose_name='order', blank=True, max_length=50
     )
 
     def __str__(self):
@@ -100,17 +90,16 @@ class User(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField('Date delivery')
-    time = models.TimeField('Time delivery')
+    cake = models.ForeignKey(
+            Cake, on_delete=models.CASCADE, null=True
+            )
+    date = models.DateField(verbose_name='Date delivery')
+    time = models.TimeField(verbose_name='Time delivery')
     delivcomments = models.TextField(
-        'comment',
-        blank=True
+        verbose_name='comment', blank=True
     )
     cost = models.IntegerField(
-        'price',
-        null=True,
-        blank=True,
+        verbose_name='price', null=True, blank=True,
     )
 
     def __str__(self):

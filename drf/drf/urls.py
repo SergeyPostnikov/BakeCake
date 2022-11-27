@@ -6,6 +6,8 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'cake', views.CakeViewSet)
+router.register(r'user', views.UserViewSet)
+router.register(r'order', views.OrderViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
